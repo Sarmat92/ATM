@@ -65,7 +65,9 @@ public class Card {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return isBlocked == card.isBlocked && cardBalance == card.cardBalance && inputErrorAttempts == card.inputErrorAttempts && Objects.equals(pinCode, card.pinCode) && Objects.equals(cardNumber, card.cardNumber);
+        return isBlocked == card.isBlocked && cardBalance == card.cardBalance &&
+                inputErrorAttempts == card.inputErrorAttempts && Objects.equals(pinCode, card.pinCode) &&
+                Objects.equals(cardNumber, card.cardNumber);
     }
 
     @Override

@@ -8,11 +8,13 @@ import java.util.Scanner;
 
 public class LoginService {
 
-    public static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
+    private final String ENTER_PIN_AND_CARD = "Enter your pin code and card number";
+    private final String BLOCK_CARD = "card's blocked";
 
     public boolean login(Card card, Scanner scanner) {
         if (!card.isBlocked()) {
-            LOGGER.info("Enter your pin code and card number");
+            LOGGER.info(ENTER_PIN_AND_CARD);
             boolean result = checkCardPin(card, scanner.nextLine()) && checkCardNumber(card, scanner.nextLine());
             updateUserStatus(card, result);
             return result;
@@ -49,7 +51,7 @@ public class LoginService {
 
     private void blockCard(Card card) {
         card.setBlocked(true);
-        LOGGER.info("card's blocked");
+        LOGGER.info(BLOCK_CARD);
     }
 
     private void restoreAttempts(Card card) {

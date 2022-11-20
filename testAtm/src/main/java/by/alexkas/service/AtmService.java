@@ -1,6 +1,5 @@
 package by.alexkas.service;
 
-import by.alexkas.writer.WriterImpl;
 import by.alexkas.bean.Atm;
 import by.alexkas.bean.Card;
 import org.apache.logging.log4j.LogManager;
@@ -9,14 +8,15 @@ import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
 public class AtmService {
-    public static final Logger LOGGER = LogManager.getLogger();
-    CardService cardService = new CardService();
-    Card card = new Card();
-    Atm atm = new Atm();
-    LoginService loginService = new LoginService();
-    WriterImpl reader = new WriterImpl();
+    private static final Logger LOGGER = LogManager.getLogger();
+    private CardService cardService = new CardService();
+    private Card card = new Card();
+    private Atm atm = new Atm();
+    private LoginService loginService = new LoginService();
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private final String WRONG_INITIALIZATION = "Wrong initialization";
+    private final String WRONG_CHOICE = "Wrong choice";
 
     public void initialization(Card card, Scanner scanner) {
         verifyCard(card, scanner);
@@ -29,7 +29,8 @@ public class AtmService {
                 atmMenu(scanner);
                 exit = true;
             } else {
-                LOGGER.info("Wrong initialization");
+
+                LOGGER.info(WRONG_INITIALIZATION);
                 exit = isExit(card, exit);
             }
         }
@@ -52,7 +53,9 @@ public class AtmService {
                 case 2 -> cardService.putMoneyToCard(card, scanner);
                 case 3 -> cardService.getMoneyFromCard(card, atm, scanner);
                 case 4 -> exitFromAtmMenu = true;
-                default -> LOGGER.info("Wrong choice");
+                default -> {
+                    LOGGER.info(WRONG_CHOICE);
+                }
             }
         }
     }
