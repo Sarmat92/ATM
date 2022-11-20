@@ -1,6 +1,8 @@
 package by.alexkas.service;
 
 import by.alexkas.bean.Card;
+import by.alexkas.validator.CardNumberValidatorImpl;
+import by.alexkas.validator.PinCodeValidateImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +10,8 @@ import java.util.Scanner;
 
 public class LoginService {
 
+    private PinCodeValidateImpl pinValidator = new PinCodeValidateImpl();
+    private CardNumberValidatorImpl cardValidator = new CardNumberValidatorImpl();
     private static final Logger LOGGER = LogManager.getLogger();
     private final String ENTER_PIN_AND_CARD = "Enter your pin code and card number";
     private final String BLOCK_CARD = "card's blocked";
@@ -32,11 +36,25 @@ public class LoginService {
     }
 
     private boolean checkCardPin(Card card, String inputPinCode) {
-        return card.getPinCode().equals(inputPinCode);
+        if (checkPinValidator(inputPinCode)) {
+            return card.getPinCode().equals(inputPinCode);
+        }
+        return false;
+    }
+
+    private boolean checkPinValidator(String pin) {
+        return pinValidator.validate(pin);
     }
 
     private boolean checkCardNumber(Card card, String inputCardNumber) {
-        return card.getCardNumber().equals(inputCardNumber);
+        if (checkCardNumberValidator(inputCardNumber)) {
+            return card.getCardNumber().equals(inputCardNumber);
+        }
+        return false;
+    }
+
+    private boolean checkCardNumberValidator(String cardNumber) {
+        return cardValidator.validate(cardNumber);
     }
 
     private void reduceLoginAttempts(Card card) {
