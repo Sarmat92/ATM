@@ -13,7 +13,7 @@ public class Card {
 
     public Card() {
         this.pinCode = "1234";
-        this.cardNumber = "11112222";
+        this.cardNumber = "1111222233334444";
     }
 
     public String getPinCode() {

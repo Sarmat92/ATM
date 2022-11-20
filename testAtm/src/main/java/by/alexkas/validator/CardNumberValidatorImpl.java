@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class CardNumberValidatorImpl implements Validate<String> {
 
-    private static final String VALID_PASSWORD_REGEX = "\\d{8}";
+    private static final String VALID_PASSWORD_REGEX = "\\d{16}";
 
     @Override
     public boolean validate(String number) {
