@@ -9,7 +9,7 @@ public class Card {
     private boolean isBlocked;
     private long cardBalance;
     private int inputErrorAttempts = 3;
-    final int LIMIT_CARD = 200_000;
+    final int LIMIT_CARD = 1_000_000;
 
     public Card() {
         this.pinCode = "1234";

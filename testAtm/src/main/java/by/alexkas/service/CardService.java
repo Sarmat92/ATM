@@ -14,8 +14,8 @@ public class CardService {
     private final String cardMoney = "You're have ";
     private final String LIMIT_EXCEEDED = "Limit has exceeded.";
     private final String INCORRECT_TRANSACTION = "Incorrect transaction";
+    private final String SUCCESSFULLY_PERFORMED = "Operation was successfully performed";
     public void showBankAccount(Card card) {
-
         StringBuilder loggingMsgStringBuilder = new StringBuilder();
         loggingMsgStringBuilder.append(cardMoney);
         loggingMsgStringBuilder.append(card.getCardBalance());
@@ -29,6 +29,7 @@ public class CardService {
         } else {
             card.setCardBalance(card.getCardBalance() + putMoney);
             reader.writeFile(card);
+            LOGGER.info(SUCCESSFULLY_PERFORMED);
         }
     }
 
@@ -39,6 +40,7 @@ public class CardService {
         } else {
             card.setCardBalance(card.getCardBalance() - getMoney);
             reader.writeFile(card);
+            LOGGER.info(INCORRECT_TRANSACTION);
         }
     }
 }
