@@ -28,7 +28,7 @@ public class CardService {
             LOGGER.info(LIMIT_EXCEEDED);
         } else {
             card.setCardBalance(card.getCardBalance() + putMoney);
-            reader.writeInformation(card);
+            reader.writeFile(card);
         }
     }
 
@@ -38,7 +38,7 @@ public class CardService {
             LOGGER.info(INCORRECT_TRANSACTION);
         } else {
             card.setCardBalance(card.getCardBalance() - getMoney);
-            reader.writeInformation(card);
+            reader.writeFile(card);
         }
     }
 }

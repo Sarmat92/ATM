@@ -13,6 +13,5 @@ public class AtmApp {
         Card card = new Card();
 
         atmService.initialization(card, scanner);
-
     }
 }

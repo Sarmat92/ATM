@@ -4,5 +4,6 @@ import by.alexkas.bean.Card;
 
 public interface Writer {
 
-    void writeInformation(Card card);
+    void writeFile(Card card);
+    void readFile(Card card);
 }
